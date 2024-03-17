@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider</title>
+  <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body>
+    <h2> Register Provider's Dataplane with its Control Plane </h2>
+
+    <form id="register" method="post" action="/register">
+        <button type="submit" class="button"> Register </button>
+    </form>
+
+    <% if (locals.errorRegister.length !== 0) {%>
+        <div>
+            <p> <pre><%= errorRegister %> </pre></p>
+        </div>
+    <% } else if (locals.registerResp.length !== 0) {%>
+        <div>
+            <p> Register Successful </p>
+        </div>
+    <% } %>
+    <h2> Create Asset </h2>
+    <form id="api" method="post" action="/create-asset">
+
+        <div class="form">
+            <label> API URL: </label>
+            <input type="text" name="apiUrl" placeholder="API URL" required>
+        </div>
+        
+        <div class="form">
+            <label> Asset Id: </label>
+            <input type="text" name="assetId" placeholder="ID" required>
+        </div>
+        <div>
+            <button type="submit" class="button"> Create Asset </button>
+        </div>
+    </form>
+    <% if (locals.errorAsset.length !== 0) {%>
+        <div>
+            <p> <pre><%= errorAsset %> </pre></p>
+        </div>
+    <% } else if(locals.createAssetResp !== 0) {%>
+        <div>
+            <p> <pre> <%= createAssetResp %> </pre></p>
+        </div>
+    <% } %>
+
+    <h2> Create Policy </h2>
+    <form id="createPolicy" method="post" action="/create-policy">
+        <button type="submit" class="button"> Create Policy </button>
+    </form>
+    <% if (locals.errorPolicy.length !== 0) {%>
+        <div>
+            <p> <pre><%= errorPolicy %> </pre> </p>
+        </div>
+    <% } else if (locals.createPolicyResp !== 0) {%>
+        <div>
+            <p> <pre><%= createPolicyResp %> </pre></p>
+        </div>
+    <% } %>
+    <h2> Create Contract</h2>
+    <form id="createContract" method="post" action="/create-contract">
+        <button type="submit" class="button"> Create Contract </button>
+    </form>
+
+    <% if (locals.errorContract.length !== 0) {%>
+        <div>
+            <p> <pre><%= errorContract %> </pre></p>
+        </div>
+    <% } else if (locals.createContractResp !== 0) {%>
+        <div>
+            <p> <pre><%= createContractResp %></pre> </p>
+        </div>
+    <% } %>
+
+    
+</body>
+
+</html>

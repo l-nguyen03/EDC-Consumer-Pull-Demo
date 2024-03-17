@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumer</title>
+  <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body>
+    
+    <h2> Provider's Catalog</h2>
+    <div class="text-field">
+        <% if (locals.catalog !== '[]') { %>
+            <pre><%= catalog%></pre>
+        <% } else { %>
+            <p> Provider's Catalog is empty </p>
+        <% } %>
+    </div>
+
+    <h2> Negotiate Contract </h2>
+    <form id="startNegotiation" method="post" action="/negotiate">
+        <div class="form">
+            <label>Contract Id: </label>
+            <input type="text" name="contractId" placeholder="Contract Id" required>
+        </div>
+        <div class="form">
+            <label>Asset Id: </label>
+            <input type="text" name="assetId" placeholder="Asset Id" required>
+        </div>
+        <div>
+            <button type="submit" class="button">
+                Start Negotiate
+            </button>
+        </div>
+    </form>
+    <% if (locals.negotiationStatus) { %>
+        <div>
+            <p> <%= negotiationStatus %> </p>
+        </div>
+    <% } %>
+    <h2> Start Transfer Process </h2>
+    <form id="startTransfer" method="post" action="/transfer">
+        <div class="form">
+            <label>Contract Agreement: </label>
+            <input type="text" name="agreementId" placeholder="Contract Agreement Id" required>
+        </div>
+        <div class="form">
+            <label>Asset Id: </label>
+            <input type="text" name="assetId" placeholder="Asset Id" required>
+        </div>
+        <div class="button">
+            <button type="submit" class="button">
+                Start Transfer
+            </button>
+        </div>
+    </form>
+    <% if (locals.transferStatus) { %>
+        <div>
+            <p> <%= transferStatus %> </p>
+        </div>
+    <% } %>
+
+    <% if (locals.authCode) { %>
+        <h2> For your contract with ID: <%= contractId%> you have been provided with these credentials to retrieve data:</h2>
+        <div>
+            <ul> 
+                <li> <b>API:</b> <%= endpoint %> </li>
+                <li> <b><%= authKey %>: </b> <%= authCode %> </li>
+            </ul>
+            <h2> The provided API supported these queries:</h2>
+            <pre> <%= guide %> </pre>
+            <h3> Try the API out!</h3>
+            <form method="post", action="/query"> 
+                <div class="form">
+                    <label>Paste the API here: </label>
+                    <input type="text" name="endpoint" required>
+                </div>
+                <div class="form">
+                    <label>Paste the AuthCode here: </label>
+                    <input type="text" name="authCode" required>
+                </div>
+                <div class="form">
+                    <label>Type in your query: </label>
+                    <input type="text" name="query" required>
+                </div>
+                <p> If you want to use the filter query </p>
+                <div class="form">
+                    <label class="form-child">Type in a property: </label>
+                    <input type="text" name="property" class="form-child">
+                    <label class="form-child">Type in an operator (le or gt or eq): </label>
+                    <input type="text" name="operator" class="form-child">
+                    <label class="form-child">Type in a value: </label>
+                    <input type="text" name="value" class="form-child">
+                </div>
+                <div>
+                    <button type="submit" class="button">
+                        Query
+                    </button>
+                </div>
+            </form>
+            <% if (locals.queryResp) { %>
+
+                <h3>Returned Data</h3>
+                <pre><%= queryResp %> </pre>
+            <% } %>
+        </div>
+    <% } %>
+</body>
+
+</html>

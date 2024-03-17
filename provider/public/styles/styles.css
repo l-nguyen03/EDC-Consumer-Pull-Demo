@@ -1,0 +1,28 @@
+body {
+    overflow: scroll;
+}
+
+.form > label {
+    width: 12em;
+    height: 2em;
+}
+
+.form-child {
+    margin: 5em;
+}
+
+.form > input {
+    width: 24em;
+    height: 2em;
+}
+.form {
+    margin: 20px;
+    display:flex;
+    justify-content: flex-start;
+}
+
+.button {
+    padding-right: 1em;
+    width: 12em;
+    height: 2em;
+}
